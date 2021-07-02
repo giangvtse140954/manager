@@ -8,7 +8,6 @@ import { Typography } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import clsx from 'clsx';
 import ProductForm from '../../components/ProductForm';
 
 const columns = [
