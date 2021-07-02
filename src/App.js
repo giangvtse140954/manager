@@ -25,7 +25,7 @@ const App = () => {
   return (
     <Switch>
       <Route path='/login' component={Login} />
-      <div className={classes.root}>
+      <>
         <NavBar />
         <main className={classes.content}>
           <PrivateRoute
@@ -59,7 +59,7 @@ const App = () => {
             component={GarageProfile}
           ></PrivateRoute>
         </main>
-      </div>
+      </>
     </Switch>
   );
 };
