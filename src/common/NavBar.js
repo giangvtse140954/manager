@@ -78,7 +78,7 @@ const NavBar = () => {
       >
         <Toolbar>
           <Typography variant='h6' className={classes.title}>
-            iRescue
+            Quản lý cửa hàng 3MP
           </Typography>
           <div>
             <IconButton
