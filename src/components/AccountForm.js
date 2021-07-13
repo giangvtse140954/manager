@@ -36,7 +36,7 @@ const AccountForm = (props) => {
     <div>
       <Card className={classes.root}>
         <CardHeader
-          title='Nhập thông tin tài khoản'
+          title='Nhập thông tin nhân viên'
           style={{ marginLeft: '10px' }}
           // subheader='Tạo tài khoản'
         />

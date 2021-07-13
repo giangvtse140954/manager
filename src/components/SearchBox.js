@@ -27,6 +27,7 @@ const SearchBox = (props) => {
       <InputBase
         className={classes.input}
         placeholder={props.content}
+        onInput={(event) => props.onInput(event.target.value)}
         inputProps={{ 'aria-label': 'search google maps' }}
       />
       <IconButton

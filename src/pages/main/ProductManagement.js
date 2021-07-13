@@ -138,7 +138,20 @@ const ProductManagement = () => {
             justifyContent: 'space-between',
           }}
         >
-          <SearchBox content='Tìm dịch vụ theo tên' />
+          <SearchBox
+            content='Tìm dịch vụ theo tên'
+            onInput={(value) => {
+              const flag = [...rows];
+              let result = [];
+              result = flag.filter((item) => {
+                if (item.service.toLowerCase().includes(value.toLowerCase())) {
+                  return true;
+                }
+                return false;
+              });
+              setProduct(result);
+            }}
+          />
         </div>
         <div className={classes.rightPart}>
           <Button
@@ -149,7 +162,12 @@ const ProductManagement = () => {
           >
             Thêm dịch vụ
           </Button>
-          <Button variant='contained' color='secondary' onClick={handleDelete}>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={handleDelete}
+            disabled={selected.length > 0 ? false : true}
+          >
             Xóa dịch vụ
           </Button>
         </div>

@@ -186,8 +186,34 @@ const ServiceManagement = () => {
             justifyContent: 'space-between',
           }}
         >
-          <SearchBox content='Tìm sản phẩm theo tên' />
-          <SearchBox content='Tìm sản phẩm theo dịch vụ' />
+          <SearchBox
+            content='Tìm sản phẩm theo tên'
+            onInput={(value) => {
+              const flag = [...rows];
+              let result = [];
+              result = flag.filter((item) => {
+                if (item.product.toLowerCase().includes(value.toLowerCase())) {
+                  return true;
+                }
+                return false;
+              });
+              setProduct(result);
+            }}
+          />
+          <SearchBox
+            content='Tìm sản phẩm theo dịch vụ'
+            onInput={(value) => {
+              const flag = [...rows];
+              let result = [];
+              result = flag.filter((item) => {
+                if (item.service.toLowerCase().includes(value.toLowerCase())) {
+                  return true;
+                }
+                return false;
+              });
+              setProduct(result);
+            }}
+          />
         </div>
         <div className={classes.rightPart}>
           <Button
@@ -198,7 +224,12 @@ const ServiceManagement = () => {
           >
             Thêm sản phẩm
           </Button>
-          <Button variant='contained' color='secondary' onClick={handleDelete}>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={handleDelete}
+            disabled={selected.length > 0 ? false : true}
+          >
             Xóa sản phẩm
           </Button>
         </div>

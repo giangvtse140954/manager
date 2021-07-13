@@ -171,7 +171,7 @@ const NavBar = () => {
               <ListItemIcon>
                 <People />
               </ListItemIcon>
-              <ListItemText primary='Quản lý tài khoản' />
+              <ListItemText primary='Quản lý nhân viên' />
             </ListItem>
           </Link>
           <Link to='/dashboard' className={classes.link}>

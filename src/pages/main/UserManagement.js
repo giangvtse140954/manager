@@ -12,7 +12,7 @@ import clsx from 'clsx';
 import AccountForm from '../../components/AccountForm';
 
 const columns = [
-  { field: 'id', headerName: 'Tài khoản', width: 140 },
+  { field: 'id', headerName: 'Số điện thoại', width: 160 },
   { field: 'fullname', headerName: 'Họ và tên', width: 170, editable: true },
   { field: 'email', headerName: 'Email', width: 215, editable: true },
   {
@@ -36,18 +36,18 @@ const columns = [
   },
   {
     field: 'start',
-    headerName: 'Vào làm',
-    width: 130,
+    headerName: 'Ngày vào làm',
+    width: 180,
     type: 'date',
     editable: true,
   },
-  {
-    field: 'end',
-    headerName: 'Nghỉ việc',
-    width: 135,
-    type: 'date',
-    editable: true,
-  },
+  // {
+  //   field: 'end',
+  //   headerName: 'Nghỉ việc',
+  //   width: 135,
+  //   type: 'date',
+  //   editable: true,
+  // },
 ];
 
 const rows = [
@@ -91,7 +91,7 @@ const rows = [
     id: '0988246109',
     fullname: 'Nguyen H.Minh Tu',
     email: 'tunhm@gmail.com',
-    birthdate: null,
+    birthdate: '12/2/2000',
     gender: 'Nữ',
     status: 'Đang rảnh',
     start: '26/10/2018',
@@ -225,7 +225,20 @@ const UserManagement = () => {
         Quản lý tài khoản nhân viên
       </Typography>
       <div className={classes.searchBox}>
-        <SearchBox content='Tìm tài khoản theo tên' />
+        <SearchBox
+          content='Tìm nhân viên theo số điện thoại'
+          onInput={(value) => {
+            const flag = [...rows];
+            let result = [];
+            result = flag.filter((item) => {
+              if (item.id.toLowerCase().includes(value.toLowerCase())) {
+                return true;
+              }
+              return false;
+            });
+            setAcc(result);
+          }}
+        />
         <div className={classes.rightPart}>
           <Button
             variant='contained'
@@ -235,7 +248,12 @@ const UserManagement = () => {
           >
             Thêm nhân viên
           </Button>
-          <Button variant='contained' color='secondary' onClick={handleDelete}>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={handleDelete}
+            disabled={selected.length > 0 ? false : true}
+          >
             Xóa nhân viên
           </Button>
         </div>
