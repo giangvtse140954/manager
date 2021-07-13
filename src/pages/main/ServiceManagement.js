@@ -9,6 +9,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import ServiceForm from '../../components/ServiceForm';
+import ConfirmDialog from '../../components/ComfirmDialog';
 
 const columns = [
   { field: 'id', headerName: 'Mã hàng', width: 140 },
@@ -123,11 +124,17 @@ const ServiceManagement = () => {
   const [product, setProduct] = useState(rows);
   const [selected, setSelected] = useState([]);
   const [open, setOpen] = React.useState(false);
-
+  const [o, setO] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
+  const handleO = () => {
+    setO(true);
+  };
 
+  const handleClo = () => {
+    setO(false);
+  };
   const handleClose = () => {
     setOpen(false);
   };
@@ -151,6 +158,33 @@ const ServiceManagement = () => {
   };
   return (
     <div className={classes.root}>
+      <Modal
+        aria-labelledby='transition-modal-title'
+        aria-describedby='transition-modal-description'
+        className={classes.modal}
+        open={o}
+        onClose={handleClo}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={o}>
+          <div className={classes.paper}>
+            <h1
+              id='transition-modal-title'
+              style={{ lineHeight: '80px', textAlign: 'center' }}
+            >
+              Bạn có chắc muốn xóa sản phẩm?
+            </h1>
+            <ConfirmDialog
+              handleClose={handleClo}
+              handleDelete={handleDelete}
+            />
+          </div>
+        </Fade>
+      </Modal>
       <Modal
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'
@@ -227,7 +261,7 @@ const ServiceManagement = () => {
           <Button
             variant='contained'
             color='secondary'
-            onClick={handleDelete}
+            onClick={handleO}
             disabled={selected.length > 0 ? false : true}
           >
             Xóa sản phẩm
